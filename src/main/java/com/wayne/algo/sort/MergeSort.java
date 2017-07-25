@@ -49,10 +49,12 @@ public class MergeSort {
         	k++;
         }
         
-        // Copy the rest of the left side of the array into the target array
+        // if the left side has no remaining data, means the remaining data in right are all larger than left, no need to adjust any more 
+        // if the left side has remaining data, means all right have been merged, copy the rest of the left side of the array into the target array
         while ( i <= middle ) {
         	numbers[k++] = helper[i++];
         }
+        
         
     }
 

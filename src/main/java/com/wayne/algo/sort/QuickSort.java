@@ -46,8 +46,8 @@ public class QuickSort {
     		quicksort(i, high);
     	}
     }
+    
 	private void exchange(int i, int j) {
-		// TODO Auto-generated method stub
 		int temp = numbers[i];
 		numbers[i] = numbers[j];
 		numbers[j] = temp;
@@ -56,13 +56,13 @@ public class QuickSort {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int data[] = {3,5,4,7,1,2,6};
+		int data[] = {3,1,4,5,0,1,9,8};
 		
 		QuickSort qs = new QuickSort();
 		qs.sort(data);
 		
 		for(int i: data)
-			System.out.println(i);
+			System.out.print(i + " ");
 		
 	}
 
