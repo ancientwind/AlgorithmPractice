@@ -21,4 +21,5 @@ public class DataUtils {
             System.out.print(i + " ");
         }
     }
+
 }
