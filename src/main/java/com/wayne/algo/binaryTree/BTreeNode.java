@@ -2,7 +2,7 @@ package com.wayne.algo.binaryTree;
 
 /**
  * 
- * @author 212331901 linked stored binary tree node
+ * @author wayne linked stored binary tree node
  */
 public class BTreeNode {
 
