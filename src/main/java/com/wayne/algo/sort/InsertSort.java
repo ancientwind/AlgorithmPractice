@@ -36,6 +36,9 @@ public class InsertSort {
         }
     }
 
+    /**
+     * every time insert, start comparing from index=0, more times of comparing than this.sort()
+     */
     public void sort_dump() {
 
         for (int i = 1; i < size; i++) {
