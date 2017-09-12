@@ -13,7 +13,8 @@ public class QuickSort {
         }
         this.numbers = values;
         number = values.length;
-        quicksort(0, number - 1);
+//        quicksort(0, number - 1);
+		quicksortOptimize(0, number -1);
     }
 
     private void quicksort(int low, int high) {
@@ -46,7 +47,37 @@ public class QuickSort {
     		quicksort(i, high);
     	}
     }
-    
+
+    public void quicksortOptimize(int low, int high) {
+    	if (low >= high) return;
+
+    	int pivot = patitionit(low, high);
+    	quicksortOptimize(low, pivot - 1);
+    	quicksortOptimize(pivot + 1, high);
+
+	}
+
+	public int patitionit(int low, int high) {
+
+    	// choose the median number as pivot and exchange it to high position
+    	int pivot = low + (high - low) / 2;
+    	exchange(pivot, high);
+
+    	// dividerPosition keeps track of the position
+		// where the pivot should be inserted
+		int dividerPosition = low;
+
+		// exchange smaller to left of dividerPosition
+		for (int i = low; i < high; i++) {
+			if (numbers[i] < numbers[high]) {
+				exchange(i, dividerPosition++);
+			}
+		}
+
+		exchange(dividerPosition, high);
+		return dividerPosition;
+	}
+
 	private void exchange(int i, int j) {
 		int temp = numbers[i];
 		numbers[i] = numbers[j];
@@ -54,9 +85,8 @@ public class QuickSort {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		int data[] = {3,1,4,5,0,1,9,8};
+		int data[] = {3,1,4,7,5,2,3,6,2,4,3,1,9,8};
 		
 		QuickSort qs = new QuickSort();
 		qs.sort(data);

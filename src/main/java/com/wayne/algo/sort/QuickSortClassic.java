@@ -69,7 +69,6 @@ public class QuickSortClassic {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		int data[] = {2,21,4,5,0,13,9,8,2};
 		
