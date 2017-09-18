@@ -22,4 +22,42 @@ public class DataUtils {
         }
     }
 
+    /**
+     *
+     * @param number the input number
+     * @param radix 10
+     * @param digit 1=1s 2=10s 3=100s
+     * @return number on digit position of the input
+     */
+    public static int getNumOnDigit(int number, int radix, int digit) {
+        return (number / mutiplePower(radix, digit)) % 10;
+    }
+
+    public static int mutiplePower(int radix, int digit) {
+        int result = 1;
+        while (--digit > 0)
+            result *= radix;
+        return result;
+    }
+
+    public static int getLargestDigit(int[] array) {
+        int largest = 1;
+        for (int i = 0; i < array.length; i++) {
+            int digit = getDigits(array[i]);
+            if (digit > largest) largest = digit;
+        }
+        return largest;
+    }
+
+    public static int getDigits(int number) {
+        int count = 1;
+        while ( (number = number / 10) > 0) {
+            count++;
+        }
+        return count;
+    }
+
+    public static int getDigitsWithStringMethod(int number) {
+        return (String.valueOf(number).length());
+    }
 }

@@ -1,6 +1,5 @@
 package com.wayne.algo.sort;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,12 +9,7 @@ import static org.junit.Assert.*;
  */
 public class RadixSortTest {
 
-    private RadixSort radixSort;
-
-    @BeforeClass
-    public void init(){
-        radixSort = new RadixSort();
-    }
+    private RadixSort radixSort = new RadixSort();
 
     @Test
     public void sort() throws Exception {
@@ -28,28 +22,28 @@ public class RadixSortTest {
     @Test
     public void getNumOnDigit() throws Exception {
         int number = 234698;
-        assertEquals(6, RadixSort.getNumOnDigit(number, 10, 3));
+        assertEquals(6, DataUtils.getNumOnDigit(number, 10, 3));
     }
 
     @Test
     public void mutiplePower() throws Exception {
-        assertEquals(100, RadixSort.mutiplePower(10, 3));
+        assertEquals(100, DataUtils.mutiplePower(10, 3));
     }
 
     @Test
     public void getLargestDigit() throws Exception {
         int array[] = {23,244,12,5,36};
-        assertEquals(3, RadixSort.getLargestDigit(array));
+        assertEquals(3, DataUtils.getLargestDigit(array));
     }
 
     @Test
     public void getDigits() throws Exception {
-        assertEquals(4, RadixSort.getDigits(2535));
+        assertEquals(4, DataUtils.getDigits(2535));
     }
 
     @Test
     public void getDigitsWithStringMethod() throws Exception {
-        assertEquals(4, RadixSort.getDigits(2535));
+        assertEquals(4, DataUtils.getDigits(2535));
     }
 
 }
