@@ -1,23 +1,43 @@
 package com.wayne.algo.basics;
 
+import java.util.ArrayList;
+
 public class ArrayStack {
 
-	private final int SIZE = 10;
+	private int SIZE = 10;
 	
 	//top one is empty
 	private int top;
 	
-	private Object[] arrayStack = new Object[SIZE];
+	private Object[] arrayStack;
 	
 	public ArrayStack() {
-		this.top = 0;
+		this.init();
 	}
-	
-	public boolean isEmpty (ArrayStack stack) {
+
+	public ArrayStack(int size) {
+		if ( size > 0 ) this.SIZE = size;
+		this.init();
+	}
+
+	public void init() {
+		this.top = 0;
+		this.arrayStack = new Object[SIZE];
+	}
+
+	public boolean isEmpty() {
+		return this.top == 0 ;
+	}
+
+	public boolean isFull() {
+		return this.top == this.SIZE;
+	}
+
+	public static boolean isEmpty (ArrayStack stack) {
 		return stack.top == 0 ;
 	}
 	
-	public boolean isFull (ArrayStack stack) {
+	public static boolean isFull (ArrayStack stack) {
 		return stack.arrayStack.length == stack.SIZE; // or top == SIZE
 	}
 	
@@ -38,6 +58,11 @@ public class ArrayStack {
 		else {
 			return null;
 		}
+	}
+
+	public Object peak() {
+		if (top > 0) return this.arrayStack[top];
+		else return  null;
 	}
 	
 	public void clear() {
