@@ -1,8 +1,8 @@
 package com.wayne.algo.sort;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Created by wayne on 2017/9/17.

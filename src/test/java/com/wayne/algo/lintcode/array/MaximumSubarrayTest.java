@@ -1,11 +1,10 @@
 package com.wayne.algo.lintcode.array;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import com.wayne.algo.lintcode.array.MaximumSubarray;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MaximumSubarrayTest {
 
@@ -15,8 +14,8 @@ public class MaximumSubarrayTest {
 	private int[] input2 = {-4};
 
 	
-	@BeforeClass
-	public static void init() {
+	@BeforeEach
+	public void init() {
 		maximum = new MaximumSubarray();
 	}
 	

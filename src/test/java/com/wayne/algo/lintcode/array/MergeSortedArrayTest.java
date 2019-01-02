@@ -1,15 +1,15 @@
 package com.wayne.algo.lintcode.array;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-import org.junit.BeforeClass;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MergeSortedArrayTest {
 
 	public static MergeSortedArray mergedSA;
 	
-	@BeforeClass
+	@BeforeAll
 	public static void init() {
 		mergedSA = new MergeSortedArray();
 	}
