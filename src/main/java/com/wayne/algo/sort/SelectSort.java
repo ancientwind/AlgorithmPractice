@@ -8,6 +8,10 @@ public class SelectSort {
     int[] data = DataSource.my_array;
     int size = DataSource.MAX;
 
+    /**
+     * find the minimum number of the rest array, then swap it to head of rest.
+     * more comparing, less swapping
+     */
     public void sort() {
 
 

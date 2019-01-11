@@ -9,6 +9,7 @@ public class InsertSort {
 
     int size = DataSource.MAX;
 
+    @Override
     public String toString() {
 
         StringBuilder sbu = new StringBuilder();

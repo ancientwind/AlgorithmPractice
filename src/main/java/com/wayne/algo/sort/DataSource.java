@@ -9,6 +9,6 @@ package com.wayne.algo.sort;
 public class DataSource {
 
     public static int my_array[] = { 12, 4, 5, 23, 9, 16, 28, 9, 39 };
-    public static int MAX = my_array.length;
+    public static final int MAX = my_array.length;
 
 }
