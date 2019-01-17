@@ -20,16 +20,17 @@ public class ShellSort {
         DataUtils.displayIntArray(array, "The original array is: ");
     }
 
-    /*
+    /**
     * gap : h = 3*h + 1
-    * */
+    */
     public void shellSortBasic() {
 
         // get the max step as start point
         int step = 1;
         int factor = 3;
         while (step <= this.max / factor) {
-            step = step * factor + 1; // [1,4,13,...]
+            // [1,4,13,...]
+            step = step * factor + 1;
         }
 
         sortByStep(step, factor);

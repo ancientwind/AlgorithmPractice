@@ -6,10 +6,18 @@ package com.wayne.algo.sort;
  */
 public class RadixSortMatrix {
 
-
-    private int[][] busket;
-    private int[] numbers; // how many data in busket[i]
-    private int digit = 1; // on which digit of the data is sorted
+    /**
+     * to store data categorized by the number on each digit
+     */
+    private int[][] bucket;
+    /**
+     * count of data in each bucket[i] at current digit
+     */
+    private int[] numbers;
+    /**
+     * the largest digit in array
+     */
+    private int digit = 1;
 
     public static void main(String[] args) {
         RadixSortMatrix sortMatrix = new RadixSortMatrix();
@@ -21,35 +29,35 @@ public class RadixSortMatrix {
     }
 
     public void  sort(int[] array) {
-        initBusket(array);
+        initBucket(array);
         initDigit(array);
         int radix = 1;
 
         for (int i = 1; i <= digit ; i++) {
-            // put data from array to busket by number on digit
+            // put data from array to bucket by number on digit
             for (int data: array) {
                 int numberOnDigit = (data / radix) % 10;
-                busket[numberOnDigit][numbers[numberOnDigit]++] = data;
+                bucket[numberOnDigit][numbers[numberOnDigit]++] = data;
             }
             radix *= 10;
-            moveDataFromBusket(array);
+            moveDataFromBucket(array);
         }
     }
 
-    private void moveDataFromBusket(int[] array) {
+    private void moveDataFromBucket(int[] array) {
         int index = 0;
 
         for (int i = 0; i < 10; i++) {
             int position = 0;
             while (numbers[i] > 0) {
-                array[index++] = busket[i][position++];
+                array[index++] = bucket[i][position++];
                 numbers[i]--;
             }
         }
     }
 
-    private void initBusket(int[] array) {
-        busket = new int[10][array.length];
+    private void initBucket(int[] array) {
+        bucket = new int[10][array.length];
         numbers = new int[10];
     }
 

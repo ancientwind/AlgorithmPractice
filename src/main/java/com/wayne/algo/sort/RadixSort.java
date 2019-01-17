@@ -9,7 +9,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class RadixSort {
 
-    Map<Integer, Queue<Integer>> busket= new HashMap<>();
+    Map<Integer, Queue<Integer>> bucket= new HashMap<>();
     int largestDigit = 1;
 
     public RadixSort() {
@@ -19,7 +19,7 @@ public class RadixSort {
     public void initBusket(){
         int size = 10;
         while (size > 0) {
-            busket.put(--size, new LinkedBlockingDeque<>());
+            bucket.put(--size, new LinkedBlockingDeque<>());
         }
     }
 
@@ -29,11 +29,11 @@ public class RadixSort {
         for (int i = 1; i <= largestDigit; i++) {
             // sort by number on digit i
             for (int j = 0; j < array.length; j++) {
-                busket.get(DataUtils.getNumOnDigit(array[j], 10, i))
+                bucket.get(DataUtils.getNumOnDigit(array[j], 10, i))
                         .add(array[j]);
             }
-            // put the sorted number in busket back to array to prepare for higher digit sort
-            array = getArrayFromBusket(busket);
+            // put the sorted number in bucket back to array to prepare for higher digit sort
+            array = getArrayFromBusket(bucket);
             System.out.println("\n temp: " + i);
             DataUtils.displayIntArray(array, "");
         }
@@ -41,10 +41,10 @@ public class RadixSort {
         return array;
     }
 
-    public int[] getArrayFromBusket(Map<Integer, Queue<Integer>> busket) {
+    public int[] getArrayFromBusket(Map<Integer, Queue<Integer>> bucket) {
         Vector<Integer> array = new Vector<>();
         for (int number = 0; number < 10; number++) {
-            Queue q = busket.get(number);
+            Queue q = bucket.get(number);
             while (!q.isEmpty()) {
                 array.add((int)q.poll());
             }
