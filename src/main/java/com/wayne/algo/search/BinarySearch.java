@@ -1,7 +1,7 @@
 package com.wayne.algo.search;
 
 /**
- * Search a sorted array
+ * Search in a sorted array
  */
 public class BinarySearch {
 
