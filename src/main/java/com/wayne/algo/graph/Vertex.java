@@ -7,6 +7,7 @@ public class Vertex {
 
     public char label;
     public boolean wasVisited;
+    public int weight;
 
     public Vertex(char label) {
         this.label = label;

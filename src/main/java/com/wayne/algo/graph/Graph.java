@@ -3,6 +3,9 @@ package com.wayne.algo.graph;
 import com.wayne.algo.basics.ArrayStack;
 import com.wayne.algo.basics.Queue;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * Created by wayne on 2017/11/20.
  */
@@ -51,31 +54,56 @@ public class Graph {
             if (child != -1) {
                 this.vertexList[child].visit();
                 stack.push(child);
-            }
-            else {
-               stack.pop();
+            } else {
+                stack.pop();
             }
         }
 
         this.resetVisitStatus();
     }
 
+    /**
+     * dfs using deque
+     */
+    public void dfsByDeque() {
+        Deque stack = new ArrayDeque(this.numOfVertex);
+
+        // init
+        this.vertexList[0].visit();
+        stack.push(0);
+
+        while (!stack.isEmpty()) {
+            int vertex_index = (int) stack.peek();
+            int child_index = this.getUnVisitedSubVertex(vertex_index);
+            if (child_index == -1) {
+                stack.pop();
+            } else {
+                this.vertexList[child_index].visit();
+                stack.push(child_index);
+            }
+        }
+
+        this.resetVisitStatus();
+    }
+
+
     // breadth first search
     public void bfs() {
 
-        Queue queue = new Queue(this.numOfVertex);
+//        Queue queue = new Queue(this.numOfVertex);
+        Deque queue = new ArrayDeque(this.numOfVertex);
 
         this.vertexList[0].visit();
         queue.add(0);
 
         while (!queue.isEmpty()) {
-            int vertex = queue.element();
+//            int vertex = queue.element();
+            int vertex = (int) queue.poll();
             int child = this.getUnVisitedSubVertex(vertex);
             if (child != -1) {
                 this.vertexList[child].visit();
                 queue.add(child);
-            }
-            else {
+            } else {
                 queue.remove();
             }
         }
