@@ -45,7 +45,7 @@ public class LongestPalindromeSubstring {
     }
 
     public String parseByDP(String input) {
-
+        return "";
     }
 
     public static void main(String[] args) {
