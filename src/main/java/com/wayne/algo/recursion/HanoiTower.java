@@ -5,7 +5,7 @@ public class HanoiTower {
     public static void main(String[] args) {
 
         HanoiTower tower = new HanoiTower();
-        tower.doTowers(5, 'A', 'B', 'C');
+        tower.doTowers(3, 'A', 'B', 'C');
     }
 
     /**
@@ -21,8 +21,8 @@ public class HanoiTower {
         if (topN == 1)
             System.out.println("Disk 1 from " + from + " to " + to);
         else {
-            doTowers(topN - 1, from, to, media); // put disks in from --> media, to will be act as media
-            System.out.println("Disk " + topN + " from " + from + " to " + to);
+            doTowers(topN - 1, from, to, media); // put top (n-1) disks to media, to will be act as media
+            System.out.println("Disk " + topN + " from " + from + " to " + to); // put n disk to destination
             doTowers(topN -1, media, from, to); // put disk in media --> to
         }
     }
