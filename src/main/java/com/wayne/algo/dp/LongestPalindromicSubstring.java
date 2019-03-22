@@ -46,48 +46,67 @@ public class LongestPalindromicSubstring {
      * <p>
      * O(n^2)
      */
-    public static String palindromicNormal(String input) {
-        if (input == null || input.isEmpty() || input.length() == 1) {
-            return input;
+
+    public static String palindromeNormal(String input) {
+
+        if (input == null || input.isEmpty()) {
+            return "";
         }
+
+        System.out.print(" input string is: " + input + " ");
+
+        String palindorm = input.substring(0, 1);
         int i = 1;
-        String palindrom = input.substring(0, 1);
-        while (i < input.length()) {
-            /**
-             * not "aa" or "aba"
-             *       i       i
-             */
-            if (input.charAt(i) != input.charAt(i - 1) &&
-                    (i < input.length() - 1 && input.charAt(i + 1) != input.charAt(i - 1))) {
-                i++;
-            } else {
-                int cursor_left = i - 2;
-                int cursor_right = (input.charAt(i) != input.charAt(i - 1)) ? i + 1 : i + 2;
+        while (i < input.length()){
 
-                while (cursor_left >= 0 && cursor_right < input.length()) {
-                    if (input.charAt(cursor_left--) != input.charAt(cursor_right++)) {
-                        break;
-                    }
-                }
-                if (cursor_right - cursor_left - 1 > palindrom.length()) {
-                    palindrom = input.substring(cursor_left + 1, cursor_right);
-                    System.out.println("new palindrom is: " + palindrom);
-                }
-                i = cursor_right;
-
+            int cursor_left = 0, cursor_right = input.length();
+            // case abba
+            if (input.charAt(i) == input.charAt(i - 1)) {
+                 cursor_left = i - 2;
+                 cursor_right = i + 1;
             }
+            // case abcba
+            else if (i < input.length() - 1 && input.charAt(i + 1) == input.charAt(i - 1)) {
+                 cursor_left = i - 2;
+                 cursor_right = i + 2;
+            } else {
+                ++i;
+                continue;
+            }
+
+            // expand towards two side
+            while (cursor_left >= 0 && cursor_right < input.length()) {
+                if (input.charAt(cursor_left) == input.charAt(cursor_right)) {
+                    --cursor_left;
+                    ++cursor_right;
+                } else {
+                    break;
+                }
+            }
+
+            if (cursor_right - cursor_left -1 > palindorm.length()) {
+                if ( cursor_right == input.length() ){
+                    palindorm = input.substring(cursor_left+1);
+                } else {
+                    palindorm = input.substring(cursor_left + 1, cursor_right);
+                }
+            }
+
+            i = cursor_right;
         }
-        System.out.println("palindorm is : " + palindrom);
-        return palindrom;
+
+        System.out.println("palindorm is : " + palindorm);
+
+        return palindorm;
     }
 
     public static void main(String[] args) {
         String s = "foreeksskeegfor";
-        palindromicNormal(null);
+        palindromeNormal(null);
 
-        palindromicNormal(s);
-        palindromicNormal("abba");
-        palindromicNormal("abb");
-        palindromicNormal("sdbbcbbopi");
+        palindromeNormal(s);
+        palindromeNormal("abba");
+        palindromeNormal("abb");
+        palindromeNormal("sdbbcbbopi");
     }
 }
