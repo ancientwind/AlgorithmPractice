@@ -5,7 +5,15 @@ public class ReverseString {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ReverseString rs = new ReverseString();
-		System.out.print(rs.reverse2("Let's fly away !"));
+		System.out.println(rs.reverse2("Let's fly away !"));
+
+		String word = "hello tom";
+		char[] reverse = new char[word.length()];
+		for (int i = word.length() -1; i >=0 ; i--) {
+			reverse[word.length() -1 - i] = word.charAt(i);
+		}
+		String result = String.valueOf(reverse);
+		System.out.println(result);
 	}
 	
 	/**
