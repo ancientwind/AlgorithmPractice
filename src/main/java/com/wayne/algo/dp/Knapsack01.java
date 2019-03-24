@@ -1,4 +1,4 @@
-package com.wayne.algo.DP;
+package com.wayne.algo.dp;
 
 /**
  * Given weights and values of n items,
