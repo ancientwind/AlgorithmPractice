@@ -11,31 +11,42 @@ public class LongestPalindromicSubstring {
 
     /**
      * new table[i][j] means input[i,j] is palindrome
-     * table[i+1][j-1] == 1 && input.charAt(i) == input.charAt(j)
-     * <p>
-     * result is table[0][length-1]
+     *
+     *  if i==j, true
+     *  table[i][j] is palindrome based on input.charAt(i) == input.charAt(j) && table[i+1][j-1] == true
+     *
+     *
      *
      * @param input
      * @return
      */
     public static String palindromicDP(String input) {
-        if (input.isEmpty() || input == null || input.length() == 1) {
-            return input;
+        if (isEmptyString(input)) {
+            return "";
         }
 
-        int palindrome[][] = new int[input.length()][input.length()];
+        String result = "";
+
+        boolean palindrome[][] = new boolean[input.length()][input.length()];
+
         for (int i = 0; i < input.length(); i++) {
             for (int j = 0; j < input.length(); j++) {
                 if (i == j) {
-                    palindrome[i][j] = 1;
+                    palindrome[i][j] = true;
                 }
-                if (true) {
+                else if (i > j) {
+                    palindrome[i][j] = false;
+                }
+                else {
+                    palindrome[i][j] =  palindrome[i+1][j-1] && input.charAt(i) == input.charAt(j);
+                }
 
+                if (palindrome[i][j] && (j - i + 1 > result.length()) ) {
+                    result = (j == input.length() -1) ? input.substring(i) : input.substring(i, j+1);
                 }
             }
         }
 
-        String result = "";
 
         return result;
     }
@@ -49,11 +60,9 @@ public class LongestPalindromicSubstring {
 
     public static String palindromeNormal(String input) {
 
-        if (input == null || input.isEmpty()) {
+        if (isEmptyString(input)) {
             return "";
         }
-
-        System.out.print(" input string is: " + input + " ");
 
         String palindorm = input.substring(0, 1);
         int i = 1;
@@ -95,18 +104,21 @@ public class LongestPalindromicSubstring {
             i = cursor_right;
         }
 
-        System.out.println("palindorm is : " + palindorm);
-
         return palindorm;
     }
 
-    public static void main(String[] args) {
-        String s = "foreeksskeegfor";
-        palindromeNormal(null);
+    private static boolean isEmptyString(String input) {
+        return input == null || input.isEmpty();
+    }
 
-        palindromeNormal(s);
-        palindromeNormal("abba");
-        palindromeNormal("abb");
-        palindromeNormal("sdbbcbbopi");
+
+    public static void main(String[] args) {
+
+        String[] tests = {null, "foreeksskeegfor", "abba", "aab", "abb", "xabba"};
+        for (String input : tests) {
+            System.out.print(" input string is: " + input + " ");
+            System.out.println("palindrom is : " +  palindromicDP(input));
+        }
+
     }
 }
