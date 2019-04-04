@@ -60,4 +60,10 @@ public class DataUtils {
     public static int getDigitsWithStringMethod(int number) {
         return (String.valueOf(number).length());
     }
+
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 }

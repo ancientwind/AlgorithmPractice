@@ -1,0 +1,75 @@
+package com.wayne.algo.sort;
+
+/**
+ * @author 212331901
+ * @date 2019/4/4
+ */
+public class HeapSort {
+
+    /**
+     * increasing sort
+     *
+     * @param arr
+     */
+    public void sort(int[] arr) {
+        int n = arr.length;
+
+        /**
+         * build heap, start from leaf of right sub tree
+         */
+        for (int i = parent(n); i >= 0; i--) {
+            heapify(arr, n, i);
+        }
+
+        /**
+         * one by one extract an element from heap
+         */
+        for (int i = n - 1; i >= 0; i--) {
+            // move current root to end
+            DataUtils.swap(arr, 0, i);
+            // call max heapify on the reduced heap
+            heapify(arr, i, 0);
+        }
+
+    }
+
+    /**
+     * max heapify
+     *
+     * @param arr
+     * @param n   size of the heap
+     * @param i   root node of sub
+     */
+    private void heapify(int[] arr, int n, int i) {
+        int largest = i; // initailize largest as root
+        int left = leftChild(i);
+        int right = rightChild(i);
+
+        if (left < n && arr[left] > arr[largest]) largest = left;
+        if (right < n && arr[right] > arr[largest]) largest = right;
+
+        if (largest != i) {
+            DataUtils.swap(arr, largest, i);
+            heapify(arr, n, largest); // recursively heapify the affected sub-tree
+        }
+    }
+
+    protected int parent(int i) {
+        return (i / 2 - 1);
+    }
+
+    protected int leftChild(int i) {
+        return 2 * i + 1;
+    }
+
+    protected int rightChild(int i) {
+        return 2 * i + 2;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = DataUtils.generateIntArray(8, 20);
+        DataUtils.displayIntArray(arr, "origin: ");
+        new HeapSort().sort(arr);
+        DataUtils.displayIntArray(arr, "result: ");
+    }
+}
