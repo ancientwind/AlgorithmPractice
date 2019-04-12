@@ -24,17 +24,18 @@ public class HeapSort {
         /**
          * one by one extract an element from heap
          */
-        for (int i = n - 1; i >= 0; i--) {
+        int i = n - 1;
+        while (i > 0) {
             // move current root to end
-            DataUtils.swap(arr, 0, i);
-            // call max heapify on the reduced heap
+            DataUtils.swap(arr, 0, i--);
+            // as root changed, do heapify from root node
             heapify(arr, i, 0);
         }
 
     }
 
     /**
-     * max heapify
+     * max-root heapify for subtree with subroot node i
      *
      * @param arr
      * @param n   size of the heap
@@ -55,7 +56,7 @@ public class HeapSort {
     }
 
     protected int parent(int i) {
-        return (i / 2 - 1);
+        return (i - 1) / 2;
     }
 
     protected int leftChild(int i) {
@@ -69,6 +70,7 @@ public class HeapSort {
     public static void main(String[] args) {
         int[] arr = DataUtils.generateIntArray(8, 20);
         DataUtils.displayIntArray(arr, "origin: ");
+        System.out.println();
         new HeapSort().sort(arr);
         DataUtils.displayIntArray(arr, "result: ");
     }
