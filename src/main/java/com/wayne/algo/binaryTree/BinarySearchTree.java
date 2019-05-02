@@ -59,8 +59,8 @@ class BinarySearchTree
             else if (root.right == null)
                 return root.left;
 
-            // node with two children: Get the inorder successor (smallest
-            // in the right subtree)
+            // node with two children: Get smallest in the right subtree (inorder successor)
+            // replace its value but not the node!
             root.key = minValue(root.right);
 
             // Delete the inorder successor

@@ -13,7 +13,7 @@ public class Knapsack01 {
      * solution: dp state transfer function:
      *  opt[i][j] = max {
      *              opt[i-1][j], // item i not in the optimal subset
-     *              opt[i-1][j-w(i)] + w(i) // item i in the optimal subset
+     *              opt[i-1][j-w(i)] + v(i) // item i in the optimal subset
      *              }
      * @return
      */

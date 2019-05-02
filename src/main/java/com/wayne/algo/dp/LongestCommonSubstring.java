@@ -89,14 +89,15 @@ public class LongestCommonSubstring {
 
         /**
          * Note that LCSuff[i][j] contains length of longest common suffix of X[0..i-1] and Y[0..j-1].
-         *   x y z a b c d n
-         * a 0 0 0 1 0 0 0 0
-         * b 0 0 0 0 2
+         *    x y z a b c d n
+         *
+         * a  0 0 0 1 0 0 0 0
+         * b  0 0 0 0 2
          * c           3
          * d             4
-         * x 1
-         * y   2
-         * z     3
+         * x  1
+         * y    2
+         * z      3
          * m
          */
         int suffix[][] = new int[X.length()+1][Y.length()+1];

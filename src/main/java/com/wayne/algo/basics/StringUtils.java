@@ -1,6 +1,7 @@
 package com.wayne.algo.basics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -26,8 +27,19 @@ public class StringUtils {
         return indexs.stream().mapToInt( i -> i).toArray();
     }
 
+    public static int[] allIndex(String string, char ch) {
+        List<Integer> indexes = new ArrayList<>();
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == ch) {
+                indexes.add(i);
+            }
+        }
+
+        return indexes.stream().mapToInt( i -> i).toArray();
+    }
+
     public static void main(String[] args) {
-        int[] x = StringUtils.allIndexOf("helloe", 'x');
+        int[] x = StringUtils.allIndex("helloe", 'e');
         System.out.println(x.length);
     }
 }

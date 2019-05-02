@@ -68,7 +68,7 @@ public class LongestPalindromicSubstring {
         int i = 1;
         while (i < input.length()){
 
-            int cursor_left = 0, cursor_right = input.length();
+            int cursor_left, cursor_right;
             // case abba
             if (input.charAt(i) == input.charAt(i - 1)) {
                  cursor_left = i - 2;
