@@ -28,7 +28,11 @@ public class FindMedian {
         }
 
         int heapSize = array.length / 2 + 1;
-        /** increasing queue*/
+        /** increasing queue
+         * 默认的PriorityQueue并非保证了整个队列都是有序的，只是保证了队头是最小的
+         * 可以使用Comparator来调整为大根堆
+         * PriorityQueue <Integer> maxHeap = new PriorityQueue<Integer>(11, new Comparator<Integer>()
+         * */
         PriorityQueue<Integer> heap = new PriorityQueue<>(heapSize);
         for (int i = 0; i < heapSize; i++) {
             heap.add(array[i]);

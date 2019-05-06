@@ -1,6 +1,10 @@
 package com.wayne.algo.sort;
 
 /**
+ *
+ * heap is a complete binary tree; every node is bigger or smaller than its children
+ * usually use array to store heap
+ *
  * @author 212331901
  * @date 2019/4/4
  */
