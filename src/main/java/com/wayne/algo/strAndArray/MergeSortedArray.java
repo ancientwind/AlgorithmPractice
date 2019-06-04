@@ -1,4 +1,4 @@
-package com.wayne.algo.lintcode.array;
+package com.wayne.algo.strAndArray;
 
 /**
  * Given two sorted integer arrays A and B, merge B into A as one sorted array.

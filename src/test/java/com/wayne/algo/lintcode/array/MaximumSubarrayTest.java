@@ -1,6 +1,7 @@
 package com.wayne.algo.lintcode.array;
 
 
+import com.wayne.algo.strAndArray.MaximumSubarray;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

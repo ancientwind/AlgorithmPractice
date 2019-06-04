@@ -1,20 +1,8 @@
-package com.wayne.algo.leetcode.array;
+package com.wayne.algo.strAndArray;
+
+import java.util.Arrays;
 
 public class ReverseString {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ReverseString rs = new ReverseString();
-		System.out.println(rs.reverse2("Let's fly away !"));
-
-		String word = "hello tom";
-		char[] reverse = new char[word.length()];
-		for (int i = word.length() -1; i >=0 ; i--) {
-			reverse[word.length() -1 - i] = word.charAt(i);
-		}
-		String result = String.valueOf(reverse);
-		System.out.println(result);
-	}
 	
 	/**
 	 * Given a string, you need to reverse the order of characters in each word within a sentence
@@ -57,5 +45,23 @@ public class ReverseString {
 		char temp = chars[i];
 		chars[i] = chars[j];
 		chars[j] = temp;
+	}
+
+	public static String reverse3(String input) {
+		String[] words = input.split(" ");
+		int m = 0, n = words.length - 1;
+		while (m < n) {
+			String temp = words[m];
+			words[m++] = words[n];
+			words[n--] = temp;
+		}
+		return Arrays.toString(words);
+	}
+
+
+	public static void main(String[] args) {
+//		char[] test = "hello jack!".toCharArray();
+		String test = "oh, hello jack!";
+		System.out.println(reverse3(test));
 	}
 }

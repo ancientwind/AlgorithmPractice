@@ -1,5 +1,6 @@
 package com.wayne.algo.lintcode.array;
 
+import com.wayne.algo.strAndArray.MergeSortedArray;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

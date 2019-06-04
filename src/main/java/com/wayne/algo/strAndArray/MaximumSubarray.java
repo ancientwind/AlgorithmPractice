@@ -1,4 +1,4 @@
-package com.wayne.algo.lintcode.array;
+package com.wayne.algo.strAndArray;
 
 public class MaximumSubarray {
 

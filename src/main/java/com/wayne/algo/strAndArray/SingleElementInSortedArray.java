@@ -1,4 +1,4 @@
-package com.wayne.algo.leetcode.array;
+package com.wayne.algo.strAndArray;
 
 import java.util.Arrays;
 
