@@ -46,7 +46,7 @@ public class HeapSort {
      * @param i   root node of sub
      */
     private void heapify(int[] arr, int n, int i) {
-        int largest = i; // initailize largest as root
+        int largest = i; // initialize largest as root
         int left = leftChild(i);
         int right = rightChild(i);
 

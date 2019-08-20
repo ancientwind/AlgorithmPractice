@@ -87,4 +87,12 @@ public class DataUtils {
         }
         linkedList.add(data);
     }
+
+    public static double sum(double[] l) {
+        double r = Double.MIN_NORMAL;
+        for(double d: l) {
+            r += d;
+        }
+        return r;
+    }
 }
