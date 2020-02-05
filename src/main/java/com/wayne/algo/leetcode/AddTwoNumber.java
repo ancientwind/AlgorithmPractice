@@ -24,23 +24,23 @@ class ListNode {
 
 public class AddTwoNumber {
 
+    public int addNode(ListNode index, int val) {
+        index.next = new ListNode(val % 10);
+        return val / 10;
+    }
+
+    // basic solution
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head = new ListNode(-1);
         ListNode index = head;
 
-        int sum = 0;
         int digitPlus = 0; // 1 means to add 1 in next digit
         while(l1 != null) {
             if (l2 != null) {
-                sum = l1.val + l2.val + digitPlus;
-                index.next = new ListNode(sum % 10 );
-
-                digitPlus = sum / 10;
+                digitPlus = addNode(index, l1.val + l2.val + digitPlus);
                 l2 = l2.next;
             } else {
-                sum = l1.val + digitPlus;
-                index.next = new ListNode(sum % 10);
-                digitPlus = sum /10;
+                digitPlus = addNode(index, l1.val + digitPlus);
             }
             l1 = l1.next;
             index = index.next;
@@ -50,9 +50,7 @@ public class AddTwoNumber {
                 index.next = l2;
                 break;
             } else {
-                sum = l2.val + digitPlus;
-                index.next = new ListNode(sum % 10);
-                digitPlus = sum / 10;
+                digitPlus = addNode(index, l2.val + digitPlus);
                 l2 = l2.next;
                 index = index.next;
             }
@@ -64,7 +62,27 @@ public class AddTwoNumber {
         return head.next;
     }
 
+    // more precise one as refactored while loop
+    public ListNode addTwoNumbersPrecise(ListNode l1, ListNode l2) {
+        ListNode head = new ListNode(-1);
+        ListNode index = head;
+
+        int digitPlus = 0; // 1 means to add 1 in next digit
+        int sum = 0;
+        while(l1 != null || l2 != null || digitPlus == 1) {
+            sum = (l1 != null ? l1.val : 0 ) + (l2 != null ? l2.val : 0) + digitPlus;
+            digitPlus = addNode(index, sum);
+
+            l1 = l1 != null ? l1.next: null;
+            l2 = l2 != null ? l2.next: null;
+            index = index.next;
+        }
+
+        return head.next;
+    }
+
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         AddTwoNumber addTwoNumber = new AddTwoNumber();
 
         testCase1(addTwoNumber);
@@ -72,6 +90,8 @@ public class AddTwoNumber {
         testCase3(addTwoNumber);
         testCase4(addTwoNumber);
         testCase5(addTwoNumber);
+        long end = System.currentTimeMillis();
+        System.out.println("time cost: " + (end - start));
     }
 
     private static void testCase1(AddTwoNumber addTwoNumber) {
