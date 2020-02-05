@@ -24,8 +24,8 @@ class ListNode {
 
 public class AddTwoNumber {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode result = new ListNode(0);
-        ListNode index = result;
+        ListNode head = new ListNode(-1);
+        ListNode index = head;
 
         int sum = 0;
         int digitPlus = 0; // 1 means to add 1 in next digit
@@ -52,13 +52,14 @@ public class AddTwoNumber {
                 index.next = new ListNode(sum % 10);
                 digitPlus = sum / 10;
                 l2 = l2.next;
+                index = index.next;
             }
         }
         if (digitPlus == 1) {
             index.next =new ListNode(1);
         }
 
-        return result;
+        return head.next;
     }
 
     public static void main(String[] args) {
@@ -66,6 +67,15 @@ public class AddTwoNumber {
 
         testCase1(addTwoNumber);
         testCase2(addTwoNumber);
+        testCase3(addTwoNumber);
+    }
+
+    private static void testCase1(AddTwoNumber addTwoNumber) {
+        ListNode l1 = new ListNode(1);
+        ListNode l2 = new ListNode(9); l2.next = new ListNode(9);
+        ListNode result = addTwoNumber.addTwoNumbers(l1, l2);
+        System.out.println("the result should be: {0 0 1}");
+        System.out.println(result);
     }
 
     private static void testCase2(AddTwoNumber addTwoNumber) {
@@ -76,11 +86,11 @@ public class AddTwoNumber {
         System.out.println(result);
     }
 
-    private static void testCase1(AddTwoNumber addTwoNumber) {
-        ListNode l1 = new ListNode(1);
-        ListNode l2 = new ListNode(9); l2.next = new ListNode(9);
+    private static void testCase3(AddTwoNumber addTwoNumber) {
+        ListNode l1 = new ListNode(2); l1.next = new ListNode(4); l1.next.next = new ListNode(3);
+        ListNode l2 = new ListNode(5); l2.next = new ListNode(6); l2.next.next = new ListNode(4);
         ListNode result = addTwoNumber.addTwoNumbers(l1, l2);
-        System.out.println("the result should be: {0 0 1}");
+        System.out.println("the result should be: {7 0 8}");
         System.out.println(result);
     }
 }
