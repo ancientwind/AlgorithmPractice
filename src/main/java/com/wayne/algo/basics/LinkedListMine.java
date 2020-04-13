@@ -11,17 +11,14 @@ public class LinkedListMine<T> {
 
 		public ListNode(T val) {
 			this.val = val;
-			this.next = null;
 		}
 	}
 
 	/**
 	 * init an empty
-	 * 
-	 * @param null
+	 *
 	 */
 	public LinkedListMine() {
-		this.head = this.tail = null;
 	}
 
 	/**
