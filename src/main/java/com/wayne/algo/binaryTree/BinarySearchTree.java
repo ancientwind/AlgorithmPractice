@@ -2,22 +2,22 @@ package com.wayne.algo.binaryTree;
 
 /**
  *
- * Java program to demonstrate delete operation in binary search tree
+ * Java program to demonstrate common operation in binary search tree
  *
  * @author 212331901
  * @date 2019/1/29
  */
 class BinarySearchTree
 {
-    /* Class containing left and right child of current node and key value*/
+    /* Class containing left and right child of current node and value value*/
     class Node
     {
-        int key;
+        int value;
         Node left, right;
 
         public Node(int item)
         {
-            key = item;
+            value = item;
             left = right = null;
         }
     }
@@ -31,25 +31,45 @@ class BinarySearchTree
         root = null;
     }
 
+    void traverse(Node root) {
+        printNode(root);
+        traverse(root.left);
+        traverse(root.right);
+    }
+
+    boolean isSameTree(Node root1, Node root2) {
+
+        return false;
+    }
+
+    boolean isValidTree(Node root) {
+
+        return false;
+    }
+
+    private void printNode(Node root) {
+        System.out.println(root.value);
+    }
+
     // This method mainly calls deleteRec()
     void deleteKey(int key)
     {
         root = deleteRec(root, key);
     }
 
-    /* A recursive function to insert a new key in BST */
+    /* A recursive function to insert a new value in BST */
     Node deleteRec(Node root, int key)
     {
         /* Base Case: If the tree is empty */
         if (root == null) return root;
 
         /* Otherwise, recur down the tree */
-        if (key < root.key)
+        if (key < root.value)
             root.left = deleteRec(root.left, key);
-        else if (key > root.key)
+        else if (key > root.value)
             root.right = deleteRec(root.right, key);
 
-            // if key is same as root's key, then This is the node
+            // if value is same as root's value, then This is the node
             // to be deleted
         else
         {
@@ -61,10 +81,10 @@ class BinarySearchTree
 
             // node with two children: Get smallest in the right subtree (inorder successor)
             // replace its value but not the node!
-            root.key = minValue(root.right);
+            root.value = minValue(root.right);
 
             // Delete the inorder successor
-            root.right = deleteRec(root.right, root.key);
+            root.right = deleteRec(root.right, root.value);
         }
 
         return root;
@@ -72,10 +92,10 @@ class BinarySearchTree
 
     int minValue(Node root)
     {
-        int minv = root.key;
+        int minv = root.value;
         while (root.left != null)
         {
-            minv = root.left.key;
+            minv = root.left.value;
             root = root.left;
         }
         return minv;
@@ -87,7 +107,7 @@ class BinarySearchTree
         root = insertRec(root, key);
     }
 
-    /* A recursive function to insert a new key in BST */
+    /* A recursive function to insert a new value in BST */
     Node insertRec(Node root, int key)
     {
 
@@ -99,9 +119,9 @@ class BinarySearchTree
         }
 
         /* Otherwise, recur down the tree */
-        if (key < root.key)
+        if (key < root.value)
             root.left = insertRec(root.left, key);
-        else if (key > root.key)
+        else if (key > root.value)
             root.right = insertRec(root.right, key);
 
         /* return the (unchanged) node pointer */
@@ -120,7 +140,7 @@ class BinarySearchTree
         if (root != null)
         {
             inorderRec(root.left);
-            System.out.print(root.key + " ");
+            System.out.print(root.value + " ");
             inorderRec(root.right);
         }
     }
