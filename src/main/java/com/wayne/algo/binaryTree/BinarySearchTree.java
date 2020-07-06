@@ -130,6 +130,15 @@ class BinarySearchTree {
         return minv;
     }
 
+    int maxValue(Node root) {
+        int maxv = root.value;
+        while (root.right != null) {
+            maxv = root.right.value;
+            root = root.right;
+        }
+        return maxv;
+    }
+
     // This method mainly calls insertRec()
     void insert(int key) {
         root = insertRec(root, key);
