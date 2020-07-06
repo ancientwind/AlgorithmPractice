@@ -22,6 +22,7 @@ public class DataUtils {
         for (int i : array) {
             System.out.print(i + " ");
         }
+        System.out.println();
     }
 
     /**
