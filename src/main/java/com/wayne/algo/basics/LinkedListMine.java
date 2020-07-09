@@ -47,9 +47,9 @@ public class LinkedListMine<T> {
 		} else if (this.head == this.tail) { // only one node
 			this.addTail(val);
 		} else {
-			ListNode<T> next = this.head.next;
-			this.head.next = new ListNode<T>(val);
-			this.head.next.next = next;
+			ListNode<T> node = new ListNode<>(val);
+			node.next = this.head.next;
+			this.head.next = node;
 		}
 	}
 	
@@ -57,16 +57,21 @@ public class LinkedListMine<T> {
 	{
 		node.next = curr.next;
 		curr.next = node;
-		if (node.next == null) {
-			this.tail = node;
-		} else {
-			
-		}
 	}
 	
 	public void deleteNextNode(ListNode<T> curr)
 	{
-		curr.next = curr.next.next;
+		if (this.head == null) return;
+		if (this.head.val == curr.val) {
+			this.head = this.head.next;
+		} else {
+			ListNode<T> node = this.head;
+			while (node.next.val != curr.val) {
+				node = node.next;
+				if (node == null) return;
+			}
+			node.next = curr.next;
+		}
 	}
 
 	/**
@@ -98,7 +103,9 @@ public class LinkedListMine<T> {
 	}
 
 	/**
-	 * 链表的基本形式是： 1 -> 2 -> 3 -> null ，反转需要变为 3 -> 2 -> 1 -> null 。这⾥要注意：
+	 * 链表的基本形式是： 1 -> 2 -> 3 -> null ，反转需要变为 3 -> 2 -> 1 -> null 。
+	 * solution: use prev, curr, next to iterate the list, reverse curr and prev, then move to next.
+	 * 这⾥要注意：
 	 * a.访问某个节点 curt.next 时，要检验 curt 是否为 null。 b.要把反转后的最后⼀个节点（即反转前的第⼀个节点）指向
 	 * null。
 	 * 
@@ -127,6 +134,48 @@ public class LinkedListMine<T> {
 
 		// handle head
 		this.head = prev;
+	}
+
+	/**
+	 * recursive way to reverse
+	 */
+	public ListNode reverseListNodeRecursive(ListNode head) {
+		if (head.next == null) return head;
+		ListNode last = reverseListNodeRecursive(this.head.next);
+		head.next.next = head;
+		head.next = null;
+		return last;
+	}
+
+	/**
+	 * reverse N nodes starting from head
+	 * e.g. N=3
+	 *  head -> 1 -> 2 -> 3 -> 4 -> 5 -> tail
+	 *  head -> 3 -> 2 -> 1 -> 4 -> 5 -> tail
+	 * @param head
+	 * @param n
+	 * @return
+	 */
+	ListNode successor = null;
+	public ListNode reverseN(ListNode head, int n) {
+		if (n == 1) {
+			successor = head.next;
+			return head;
+		}
+		ListNode last = reverseN(head.next, n - 1);
+		head.next.next = head;
+		head.next = successor;
+		return last;
+	}
+
+	ListNode reverseBetween(ListNode head, int m, int n) {
+		// base case
+		if (m == 1) {
+			return reverseN(head, n);
+		}
+		// 前进到反转的起点触发 base case
+		head.next = reverseBetween(head.next, m - 1, n - 1);
+		return head;
 	}
 
 	/**
