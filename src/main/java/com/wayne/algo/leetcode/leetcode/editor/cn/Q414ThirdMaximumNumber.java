@@ -53,13 +53,17 @@ public class Q414ThirdMaximumNumber {
         int test4[] = {2, 2, 4, 27, 16, 9, 16, 27, 4, 2};
         int test5[] = {2, 1, Integer.MIN_VALUE};
         int test6[] = {2, 2, 1};
+        int test7[] = {2};
+        int test8[] = {2, Integer.MIN_VALUE, Integer.MIN_VALUE};
         Solution solution = new Q414ThirdMaximumNumber().new Solution();
         System.out.println(solution.thirdMax(test));  // 1
         System.out.println(solution.thirdMax(test1)); // 2
         System.out.println(solution.thirdMax(test2)); // 1
         System.out.println(solution.thirdMax(test3)); // 2
         System.out.println(solution.thirdMax(test5)); // Integer.MIN_VALUE
-        System.out.println(solution.thirdMax(test6)); // 1
+        System.out.println(solution.thirdMax(test6)); // 2
+        System.out.println(solution.thirdMax(test7)); // 2
+        System.out.println(solution.thirdMax(test8)); // 2
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -67,26 +71,30 @@ public class Q414ThirdMaximumNumber {
         public int thirdMax(int[] nums) {
             int result[] = {Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE};
 
-            if (nums.length == 1) return nums[0];
-
-            if (nums.length == 2) return Math.max(nums[0], nums[1]);
-
+            int numAddedCount = 0;
+            boolean minValueCounted = false; // to deal with multiple minValue in nums
             for (int num : nums) {
                 for (int j = 0; j < 3; j++) {
-                    if (num == result[j]) break;
+                    if (num == result[j]) {
+                        if (num == Integer.MIN_VALUE && !minValueCounted) {
+                            numAddedCount++;
+                            minValueCounted = true;
+                        }
+                        break;
+                    }
                     if (num > result[j]) {
                         for (int k = 2; k > j; k--) {
                             result[k] = result[k - 1];
                         }
                         result[j] = num;
+                        numAddedCount++;
                         break;
                     }
                 }
             }
 
-            return result[2];
+            return (numAddedCount > 2) ? result[2] : result[0];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
 }
